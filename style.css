@@ -885,3 +885,118 @@ section {
     background: #0088cc;
     transform: scale(1.1);
 }
+
+/* Professional Sofi Features Showcase */
+.sofi-features-section {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, #f8fcff 0%, #ffffff 100%);
+}
+
+.features-showcase-grid {
+    display: grid;
+    gap: 4rem;
+    margin-top: 3rem;
+}
+
+.feature-showcase {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    padding: 2rem;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 136, 204, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 136, 204, 0.1);
+}
+
+.feature-showcase:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 136, 204, 0.15);
+}
+
+.feature-showcase:nth-child(even) {
+    background: linear-gradient(135deg, #f8fcff 0%, #ffffff 100%);
+}
+
+.feature-showcase:nth-child(even) .screenshot-container {
+    order: 2;
+}
+
+.feature-showcase:nth-child(even) .feature-info {
+    order: 1;
+}
+
+.screenshot-container {
+    position: relative;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.feature-screenshot {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: contain;
+    border-radius: 10px;
+    background: white;
+    padding: 10px;
+}
+
+.feature-info h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #0088cc;
+    margin-bottom: 1rem;
+}
+
+.feature-info p {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.feature-benefits {
+    list-style: none;
+    padding: 0;
+}
+
+.feature-benefits li {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.feature-benefits li:before {
+    content: '✅';
+    font-size: 1.2rem;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .feature-showcase {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+    }
+    
+    .feature-showcase:nth-child(even) .screenshot-container,
+    .feature-showcase:nth-child(even) .feature-info {
+        order: unset;
+    }
+    
+    .feature-screenshot {
+        max-height: 300px;
+    }
+    
+    .feature-info h3 {
+        font-size: 1.5rem;
+    }
+}
