@@ -420,6 +420,39 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// Smooth scrolling for footer links
+document.addEventListener('DOMContentLoaded', function() {
+    // Add smooth scrolling to footer links
+    const footerLinks = document.querySelectorAll('.footer-links a[href^="#"]');
+    
+    footerLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+    
+    // Add click animation to footer buttons
+    const allFooterLinks = document.querySelectorAll('.footer-links a');
+    allFooterLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 150);
+        });
+    });
+});
+
 // Add CSS classes for animations
 const style = document.createElement('style');
 style.textContent = `
