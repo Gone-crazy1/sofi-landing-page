@@ -13,6 +13,28 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <img src="images/sofi-logo.svg" alt="Sofi AI" class="nav-logo">
+                <span class="nav-brand-text">Sofi AI</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#hero" class="nav-link">Home</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#security" class="nav-link">Security</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+                <a href="https://t.me/getsofi_bot" class="nav-cta" target="_blank">Try Now</a>
+            </div>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
     <!-- Hero Section -->
     <section id="hero" class="hero">
         <div class="container">
@@ -23,31 +45,40 @@
                         <i class="fab fa-telegram"></i>
                         Try Sofi Now
                     </a>
-                </div>
-                <div class="hero-image">
+                </div>                <div class="hero-image">
                     <div class="phone-mockup">
                         <div class="phone-frame">
                             <div class="phone-screen">
-                                <div class="telegram-chat">
-                                    <div class="chat-header">
-                                        <div class="chat-avatar">S</div>
-                                        <span>Sofi AI</span>
-                                    </div>
-                                    <div class="chat-message user">
-                                        <div class="message-bubble user">
-                                            Send ₦20,000 to Mama Ngozi
+                                <div class="sofi-carousel">
+                                    <div class="carousel-container">
+                                        <div class="carousel-slide active">
+                                            <img src="images/bank-logos/sofi-send-money.png" alt="Sofi Send Money" class="chat-screenshot">
+                                            <div class="slide-caption">Send Money Instantly</div>
+                                        </div>
+                                        <div class="carousel-slide">
+                                            <img src="images/bank-logos/sofi-airtime.png" alt="Sofi Buy Airtime" class="chat-screenshot">
+                                            <div class="slide-caption">Buy Airtime Easily</div>
+                                        </div>
+                                        <div class="carousel-slide">
+                                            <img src="images/bank-logos/sofi-wallet.png" alt="Sofi Wallet" class="chat-screenshot">
+                                            <div class="slide-caption">Check Your Wallet</div>
+                                        </div>
+                                        <div class="carousel-slide">
+                                            <img src="images/bank-logos/sofi-btc-rate.png" alt="Sofi BTC Rate" class="chat-screenshot">
+                                            <div class="slide-caption">Get BTC Rates</div>
                                         </div>
                                     </div>
-                                    <div class="chat-message bot">
-                                        <div class="message-bubble bot">
-                                            ✅ Transfer successful!<br>₦20,000 sent to Mama Ngozi
-                                        </div>
+                                    <div class="carousel-dots">
+                                        <span class="dot active" data-slide="0"></span>
+                                        <span class="dot" data-slide="1"></span>
+                                        <span class="dot" data-slide="2"></span>
+                                        <span class="dot" data-slide="3"></span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>            </div>
+                </div></div>
         </div>
     </section>
 

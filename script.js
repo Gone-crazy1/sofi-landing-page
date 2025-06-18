@@ -517,3 +517,52 @@ console.log('%cBuilding the Future of Fintech in Africa! 🌍', 'color: #ff6b6b;
 
 // Initialize page visibility
 document.body.style.opacity = '1';
+
+// Sofi Screenshots Carousel
+document.addEventListener('DOMContentLoaded', function() {
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dots = document.querySelectorAll('.dot');
+    let currentSlide = 0;
+    const totalSlides = slides.length;
+
+    // Auto-advance carousel
+    function nextSlide() {
+        slides[currentSlide].classList.remove('active');
+        dots[currentSlide].classList.remove('active');
+        
+        currentSlide = (currentSlide + 1) % totalSlides;
+        
+        slides[currentSlide].classList.add('active');
+        dots[currentSlide].classList.add('active');
+    }
+
+    // Manual dot navigation
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            if (index !== currentSlide) {
+                slides[currentSlide].classList.remove('active');
+                dots[currentSlide].classList.remove('active');
+                
+                currentSlide = index;
+                
+                slides[currentSlide].classList.add('active');
+                dots[currentSlide].classList.add('active');
+            }
+        });
+    });
+
+    // Auto-advance every 4 seconds
+    setInterval(nextSlide, 4000);
+
+    // Pause on hover
+    const carousel = document.querySelector('.sofi-carousel');
+    let autoAdvance = setInterval(nextSlide, 4000);
+    
+    carousel.addEventListener('mouseenter', () => {
+        clearInterval(autoAdvance);
+    });
+    
+    carousel.addEventListener('mouseleave', () => {
+        autoAdvance = setInterval(nextSlide, 4000);
+    });
+});
