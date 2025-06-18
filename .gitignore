@@ -1,0 +1,14 @@
+# Ignore temporary files
+*.tmp
+*.log
+.DS_Store
+Thumbs.db
+
+# Ignore instruction files (not needed in production)
+FAVICON_NEEDED.txt
+HOW_TO_GET_FAVICON.txt
+README_DEPLOYMENT.md
+
+# Ignore editor files
+.vscode/
+.idea/
