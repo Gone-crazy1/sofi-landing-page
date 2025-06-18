@@ -18,6 +18,107 @@ body {
     padding: 0 20px;
 }
 
+/* Navigation */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    padding: 1rem 0;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(0, 136, 204, 0.1);
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-logo {
+    height: 32px;
+    width: auto;
+}
+
+.nav-brand-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0088cc;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav-link {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.nav-link:hover {
+    color: #0088cc;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #0088cc;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.nav-cta {
+    background: linear-gradient(135deg, #0088cc 0%, #40a7e3 100%);
+    color: white !important;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 136, 204, 0.3);
+}
+
+.nav-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 136, 204, 0.4);
+    background: linear-gradient(135deg, #0077b3 0%, #3596d9 100%);
+}
+
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 4px;
+}
+
+.nav-toggle span {
+    width: 25px;
+    height: 3px;
+    background: #333;
+    transition: all 0.3s ease;
+}
+
 /* Hero Section */
 .hero {
     min-height: 100vh;
@@ -27,6 +128,19 @@ body {
     color: white;
     position: relative;
     overflow: hidden;
+    padding-top: 80px; /* Account for fixed navbar */
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    pointer-events: none;
 }
 
 .hero-grid {
@@ -35,10 +149,24 @@ body {
     gap: 4rem;
     align-items: center;
     min-height: 80vh;
+    position: relative;
+    z-index: 2;
 }
 
 .hero-text {
     max-width: 500px;
+    animation: slideInLeft 1s ease-out;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 .hero-title {
@@ -46,6 +174,10 @@ body {
     font-weight: 700;
     line-height: 1.2;
     margin-bottom: 1.5rem;
+    background: linear-gradient(45deg, #ffffff, #e6f3ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .hero-subtitle {
@@ -69,22 +201,86 @@ body {
     transition: all 0.3s ease;
     border: 2px solid rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.cta-button:hover::before {
+    left: 100%;
 }
 
 .cta-button:hover {
     background: rgba(255, 255, 255, 0.3);
     transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
 }
 
 .cta-button.secondary {
-    background: #0088cc;
+    background: linear-gradient(135deg, #0088cc, #40a7e3);
     color: white;
     border: none;
+    box-shadow: 0 8px 25px rgba(0, 136, 204, 0.3);
 }
 
 .cta-button.secondary:hover {
-    background: #0077b3;
+    background: linear-gradient(135deg, #0077b3, #359bd1);
+    box-shadow: 0 12px 35px rgba(0, 136, 204, 0.4);
+}
+
+/* Scroll Down Button */
+.scroll-down {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+}
+
+.scroll-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+.scroll-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    animation: none;
 }
 
 /* Phone Mockup */
@@ -93,56 +289,56 @@ body {
     justify-content: center;
     align-items: center;
 }
-
-.phone-mockup {
+   animation: slideInRight 1s ease-out;
+.phone-mockup {}
     position: relative;
-    width: 300px;
+    width: 300px; {
     height: 600px;
-}
-
-.phone-frame {
+};
+       transform: translateX(50px);
+.phone-frame {    }
     width: 100%;
-    height: 100%;
-    background: #1a1a1a;
+    height: 100%; 1;
+    background: #1a1a1a;: translateX(0);
     border-radius: 40px;
     padding: 20px;
     position: relative;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
 }
-
-.phone-screen {
-    width: 100%;
+   width: 300px;
+.phone-screen {    height: 600px;
+    width: 100%;float 3s ease-in-out infinite;
     height: 100%;
     background: #f8f9fa;
     border-radius: 30px;
     overflow: hidden;
-    position: relative;
+    position: relative;anslateY(0px);
 }
-
-.telegram-chat {
+   50% {
+.telegram-chat {        transform: translateY(-20px);
     padding: 20px 15px;
     height: 100%;
     background: linear-gradient(to bottom, #0088cc, #40a7e3);
 }
-
-.chat-header {
-    display: flex;
-    align-items: center;
+features-overview {
+.chat-header {    padding: 5rem 0 3rem;
+    display: flex;: linear-gradient(to bottom, #f8fcff, #ffffff);
+    align-items: center;nter;
     gap: 10px;
     padding: 15px 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     margin-bottom: 20px;
     color: white;
     font-weight: 600;
-}
-
-.chat-avatar {
-    width: 35px;
-    height: 35px;
+}em;
+   background: linear-gradient(135deg, #0088cc, #40a7e3);
+.chat-avatar {    -webkit-background-clip: text;
+    width: 35px;xt-fill-color: transparent;
+    height: 35px;lip: text;
     background: white;
     border-radius: 50%;
     display: flex;
-    align-items: center;
+    align-items: center;rem;
     justify-content: center;
     color: #0088cc;
     font-weight: bold;
@@ -152,98 +348,90 @@ body {
     margin-bottom: 15px;
     display: flex;
 }
-
-.chat-message.user {
+   background: #1a1a1a;
+.chat-message.user {    border-radius: 40px;
     justify-content: flex-end;
 }
-
-.chat-message.bot {
+   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+.chat-message.bot {}
     justify-content: flex-start;
 }
-
-.message-bubble {
-    max-width: 80%;
-    padding: 12px 16px;
+   width: 100%;
+.message-bubble {    height: 100%;
+    max-width: 80%;f8f9fa;
+    padding: 12px 16px;30px;
     border-radius: 18px;
     font-size: 14px;
     line-height: 1.4;
 }
-
-.message-bubble.user {
+telegram-chat {
+.message-bubble.user {    padding: 20px 15px;
     background: rgba(255, 255, 255, 0.9);
-    color: #333;
+    color: #333;, #0088cc, #40a7e3);
 }
 
-.message-bubble.bot {
+.message-bubble.bot {.chat-header {
     background: rgba(255, 255, 255, 0.2);
     color: white;
     border: 1px solid rgba(255, 255, 255, 0.3);
 }
-
-/* Feature Sections */
+   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+/* Feature Sections */    margin-bottom: 20px;
 .feature-section {
-    padding: 5rem 0;
+    padding: 5rem 0;00;
     background: white;
 }
-
-.feature-section.alt {
+chat-avatar {
+.feature-section.alt {    width: 35px;
     background: #f8fcff;
 }
-
-.feature-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+   border-radius: 50%;
+.feature-grid {    display: flex;
+    display: grid;: center;
+    grid-template-columns: 1fr 1fr;t: center;
     gap: 4rem;
-    align-items: center;
+    align-items: center;t: bold;
 }
 
-.feature-grid.reverse {
-    direction: rtl;
+.feature-grid.reverse {.chat-message {
+    direction: rtl;;
 }
 
 .feature-grid.reverse > * {
     direction: ltr;
-}
+}: flex-end;
 
 .feature-content {
-    max-width: 500px;
-}
+    max-width: 500px;{
+}flex-start;
 
 .feature-title {
-    font-size: clamp(2rem, 4vw, 2.5rem);
+    font-size: clamp(2rem, 4vw, 2.5rem);{
     font-weight: 700;
-    color: #1a365d;
-    margin-bottom: 1rem;
+    color: #1a365d;x;
+    margin-bottom: 1rem;18px;
     line-height: 1.3;
 }
 
 .feature-subtitle {
-    font-size: 1.2rem;
-    color: #4a5568;
+    font-size: 1.2rem;r {
+    color: #4a5568;55, 255, 255, 0.9);
     margin-bottom: 2rem;
     line-height: 1.6;
 }
-
-.feature-img {
-    width: 100%;
-    height: 400px;
+message-bubble.bot {
+.feature-img {    background: rgba(255, 255, 255, 0.2);
+    width: 100%;te;
+    height: 400px;solid rgba(255, 255, 255, 0.3);
     object-fit: cover;
     border-radius: 20px;
     box-shadow: 0 20px 60px rgba(0, 136, 204, 0.2);
 }
-
-/* Security Section */
+   padding: 5rem 0;
+/* Security Section */    background: white;
 .security-section {
     padding: 5rem 0;
-    background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 100%);
-}
-
-.section-title {
-    font-size: clamp(2rem, 4vw, 2.5rem);
-    text-align: center;
-    margin-bottom: 3rem;
-    color: #1a365d;
-    font-weight: 700;
+    background: linear-gradient(135deg, #f8fcff 0%, #e6f3ff 100%); {
 }
 
 .security-grid {
@@ -255,15 +443,17 @@ body {
 
 .security-item {
     text-align: center;
+    padding: 2rem;
     background: white;
-    padding: 2.5rem 2rem;
     border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(0, 136, 204, 0.1);
-    transition: transform 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 136, 204, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 136, 204, 0.1);
 }
-
-.security-item:hover {
-    transform: translateY(-5px);
+   color: #1a365d;
+.security-item:hover {    margin-bottom: 1rem;
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 136, 204, 0.15);
 }
 
 .security-icon {
@@ -275,119 +465,24 @@ body {
     align-items: center;
     justify-content: center;
     margin: 0 auto 1.5rem;
-    font-size: 2rem;
     color: white;
+    font-size: 2rem;
+    box-shadow: 0 8px 25px rgba(0, 136, 204, 0.3);
 }
 
 .security-item h3 {
     font-size: 1.3rem;
-    color: #1a365d;
+    font-weight: 600;
+    color: #333;
     margin-bottom: 1rem;
 }
 
 .security-item p {
-    color: #4a5568;
+    color: #666;
     line-height: 1.6;
 }
 
-/* Trusted Banks Section */
-.trusted-section {
-    padding: 3rem 0;
-    background: white;
-    text-align: center;
-}
-
-.bank-logos-small {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-    margin-top: 2rem;
-    flex-wrap: wrap;
-}
-
-.bank-logo-small {
-    opacity: 0.7;
-    transition: all 0.3s ease;
-    filter: grayscale(30%);
-}
-
-.bank-logo-small:hover {
-    opacity: 1;
-    filter: grayscale(0%);
-    transform: scale(1.05);
-}
-
-.bank-logo-small img {
-    height: 40px;
-    width: auto;
-    object-fit: contain;
-}
-
-/* Use Cases Section */
-.use-cases-section {
-    padding: 5rem 0;
-    background: #f8fcff;
-}
-
-.use-cases-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
-}
-
-.use-case {
-    background: white;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 10px 40px rgba(0, 136, 204, 0.1);
-    transition: transform 0.3s ease;
-}
-
-.use-case:hover {
-    transform: translateY(-5px);
-}
-
-.use-case-img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-}
-
-.use-case-content {
-    padding: 1.5rem;
-}
-
-.use-case h4 {
-    font-size: 1.2rem;
-    color: #1a365d;
-    margin-bottom: 0.5rem;
-}
-
-.use-case p {
-    color: #4a5568;
-    margin-bottom: 1rem;
-    font-size: 0.9rem;
-}
-
-.transaction {
-    background: #f0f8ff;
-    padding: 0.8rem;
-    border-radius: 10px;
-    font-size: 0.85rem;
-}
-
-.amount {
-    font-weight: 600;
-    color: #0088cc;
-}
-
-.recipient {
-    color: #4a5568;
-}
-
-/* FAQ Section */
+/* Enhanced FAQ Section */
 .faq-section {
     padding: 5rem 0;
     background: white;
@@ -405,38 +500,104 @@ body {
     padding: 2rem;
     border-radius: 15px;
     border-left: 4px solid #0088cc;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.faq-item:hover {
+    background: #e6f3ff;
+    transform: translateX(5px);
+    box-shadow: 0 5px 20px rgba(0, 136, 204, 0.1);
 }
 
 .faq-item h3 {
+    color: #0088cc;
     font-size: 1.2rem;
-    color: #1a365d;
+    font-weight: 600;
     margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.faq-item h3::before {
+    content: '?';
+    width: 25px;
+    height: 25px;
+    background: #0088cc;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: bold;
 }
 
 .faq-item p {
-    color: #4a5568;
+    color: #555;
     line-height: 1.6;
 }
 
+/* Enhanced Bank Logos */
+.trusted-banks {
+    padding: 3rem 0;
+    background: white;
+    text-align: center;
+}
+
+.bank-logos-small {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.bank-logo-small {
+    opacity: 1;
+    transition: all 0.3s ease;
+    filter: none;
+    padding: 10px;
+    border-radius: 10px;
+    background: #f8fcff;
+}
+
+.bank-logo-small:hover {
+    opacity: 1;
+    filter: none;
+    transform: scale(1.05);
+    background: #e6f3ff;
+    box-shadow: 0 5px 15px rgba(0, 136, 204, 0.2);
+}
+
+.bank-logo-small img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+}
 /* Footer */
 .footer {
     background: linear-gradient(135deg, #1a365d 0%, #2d5a87 100%);
     color: white;
     padding: 3rem 0 1rem;
-    text-align: center;
 }
 
 .footer-content {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     margin-bottom: 2rem;
 }
 
 .footer-brand h3 {
     font-size: 1.8rem;
-    color: #87ceeb;
     margin-bottom: 0.5rem;
+}
+
+.footer-brand p {
+    opacity: 0.8;
 }
 
 .footer-links {
@@ -457,7 +618,8 @@ body {
 .footer-bottom {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     padding-top: 2rem;
-    opacity: 0.8;
+    text-align: center;
+    opacity: 0.6;
 }
 
 .powered-by {
@@ -471,6 +633,14 @@ body {
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+    }
+    
+    .nav-toggle {
+        display: flex;
+    }
+    
     .hero-grid {
         grid-template-columns: 1fr;
         gap: 2rem;
