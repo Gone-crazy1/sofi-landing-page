@@ -566,3 +566,43 @@ document.addEventListener('DOMContentLoaded', function() {
         autoAdvance = setInterval(nextSlide, 4000);
     });
 });
+
+// FAQ Toggle Functionality
+function toggleFAQ(index) {
+    const question = document.querySelector(`#icon-${index}`).parentElement;
+    const answer = document.getElementById(`answer-${index}`);
+    const icon = document.getElementById(`icon-${index}`);
+    
+    // Toggle active classes
+    question.classList.toggle('active');
+    answer.classList.toggle('active');
+    
+    // Change icon
+    if (question.classList.contains('active')) {
+        icon.classList.remove('fa-plus');
+        icon.classList.add('fa-minus');
+    } else {
+        icon.classList.remove('fa-minus');
+        icon.classList.add('fa-plus');
+    }
+}
+
+// Close other FAQs when one is opened (optional)
+function toggleFAQExclusive(index) {
+    // Close all other FAQs
+    for (let i = 0; i < 4; i++) {
+        if (i !== index) {
+            const otherQuestion = document.querySelector(`#icon-${i}`).parentElement;
+            const otherAnswer = document.getElementById(`answer-${i}`);
+            const otherIcon = document.getElementById(`icon-${i}`);
+            
+            otherQuestion.classList.remove('active');
+            otherAnswer.classList.remove('active');
+            otherIcon.classList.remove('fa-minus');
+            otherIcon.classList.add('fa-plus');
+        }
+    }
+    
+    // Toggle current FAQ
+    toggleFAQ(index);
+}
